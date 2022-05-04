@@ -1,3 +1,34 @@
+function dateAndTime(){
+    let d = new Date();
+
+    let year = d.getFullYear();
+    let month = d.getMonth();
+    let date = d.getDate();
+    let day = d.getDay();
+    let hour = d.getHours();
+    let minute = d.getMinutes();
+    let seconds = d.getSeconds();
+    let timeMeridian;
+
+    if(hour > 12){
+        hour -= 12;
+        timeMeridian = "PM";
+    }
+    else{
+        timeMeridian == "AM";
+    }
+
+    let arrofDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let arrofMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    let currentDateAndTime = document.getElementById('weatherDate');
+    currentDateAndTime.innerHTML = `${arrofDay[day]}, ${arrofMonth[month]} ${date}, ${year}. ${hour}:${minute}:${seconds}${timeMeridian}`
+}
+
+dateAndTime();
+setInterval(dateAndTime, 1000);
+
+
 async function weatherAPI(input){
     let apiKey = "6dd490cc75a10b580348f58a4e8337ab";
     let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${input}&units=metric&appid=${apiKey}`;
@@ -6,11 +37,17 @@ async function weatherAPI(input){
     const data = await response.json();
 
     let city = document.querySelector('#city');
+    city.innerHTML = '';
     let country = document.querySelector('#country');
+    country.innerHTML = '';
     let temperature = document.querySelector('#temperature');
+    temperature.innerHTML = '';
     let feelsLike = document.querySelector('#feelsLike');
+    feelsLike.innerHTML = '';
     let weatherDescription = document.querySelector('#weatherDescription');
+    weatherDescription.innerHTML = '';
     let coordinate = document.querySelector('#coordinate');
+    coordinate.innerHTML = '';
 
     for(let key in data){
         if(key == 'cod'){
@@ -25,7 +62,7 @@ async function weatherAPI(input){
         }
         if(key == 'main'){
             temperature.innerHTML = `${data[key].temp}<sup>o</sup>C`;
-            feelsLike.innerHTML += `${data[key].feels_like}<sup>o</sup>C`;
+            feelsLike.innerHTML += `Feels like ${data[key].feels_like}<sup>o</sup>C`;
         }
         if(key == 'weather'){
             weatherDescription.innerHTML = data[key][0].description;
@@ -46,13 +83,7 @@ async function weatherAPI(input){
 
 let cityInput = document.forms['weatherFrm']['inputCity'];
 
-let d = new Date();
-let weatherDate = document.getElementById('weatherDate');
-
 document.forms['weatherFrm'].addEventListener('submit', (e)=>{
     e.preventDefault();
-    weatherDate.innerHTML = d.toString();
-    document.querySelector('.alert').innerHTML = `<button type="button" class="btn-close" data-bs-dismiss="alert"></button>        
-    Kindly refresh to search for another city.`;
     weatherAPI(cityInput.value);
 })
