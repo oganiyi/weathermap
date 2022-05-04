@@ -51,7 +51,7 @@ let weatherDate = document.getElementById('weatherDate');
 
 document.forms['weatherFrm'].addEventListener('submit', (e)=>{
     e.preventDefault();
-    weatherDate.innerHTML = d.toUTCString();
+    weatherDate.innerHTML = d.toStringLocale();
     document.querySelector('.alert').innerHTML = `<button type="button" class="btn-close" data-bs-dismiss="alert"></button>        
     Kindly refresh to search for another city.`;
     weatherAPI(cityInput.value);
