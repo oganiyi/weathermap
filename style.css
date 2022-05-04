@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#mainContent, #notFound{
+    display: none;
+}
+
+#notFound{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.container-fluid{
+    max-width: 800px;
+    background-color: lightblue;
+    color: black;
+    box-shadow: 1px 2px 5px black, -1px -1px 5px black;
+}
+
+#city, #country{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#temperature{
+    font-size: 70px;
+}
+
+.fa-solid, #coord, #feelsLike, #weatherDescription{
+    font-size: 25px;
+}
+
+.fa-cloud{
+    font-size: 70px;
+}
+
+#niyi, #coordinate{
+    font-size: 20px;
+}
