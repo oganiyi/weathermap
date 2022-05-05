@@ -15,9 +15,9 @@ function dateAndTime(){
         timeMeridian = "PM";
     }
     else{
-        timeMeridian == "AM";
+        timeMeridian = "AM";
     }
-
+    
     let arrofDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     let arrofMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
